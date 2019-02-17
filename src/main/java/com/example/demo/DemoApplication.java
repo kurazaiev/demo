@@ -17,6 +17,6 @@ public class DemoApplication {
     @RequestMapping(method = RequestMethod.GET,
         path = "/")
     public String index() {
-        return "Good Job, Student!";
+        return "Good Job, Andrii";
     }
 }
