@@ -18,15 +18,15 @@ pipeline {
             }
         }
 
-//        stage ('Exec Maven') {
-//            steps {
-//                rtMavenRun (
-//                    tool: "mvn",
-//                    pom: 'pom.xml',
-//                    goals: 'clean package',
-//                )
-//            }
-//        }
+        stage ('Exec Maven') {
+            steps {
+                rtMavenRun (
+                    tool: "mvn",
+                    pom: 'pom.xml',
+                    goals: 'clean package',
+                )
+            }
+        }
 
         stage ('Docker build image') {
             agent any
