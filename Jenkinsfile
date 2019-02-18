@@ -31,7 +31,7 @@ pipeline {
         stage ('Docker build image') {
             agent any
             steps {
-                sh  'docker run hello-world'
+                sh  'docker build -f Dockerfile -t demo-build:${BUILD_NUMBER} demo-build:latest'
             }
         }
 
