@@ -35,19 +35,12 @@ pipeline {
             }
         }
 
-/*        stage ('Docker push to Repo') {
-            steps {
-                rtMavenRun (
-                )
-            }
-        }*/
-
-        stage ('Publish build info') {
-            steps {
-                rtPublishBuildInfo (
-                    serverId: 'art'
-                )
-            }
-        }
+//           stage ('Publish build info') {
+//                    steps {
+//                        rtPublishBuildInfo (
+//                    serverId: 'art'
+//                )
+//            }
+//        }
     }
 }
