@@ -1,5 +1,6 @@
 FROM java
-COPY target/demo-0.0.1-SNAPSHOT.jar /jar
-RUN	cd /jar
+RUN mkdir -p /usr/src/demo
+WORKDIR /usr/scr/demo
+COPY target/demo-0.0.1-SNAPSHOT.jar /usr/src/demo
 CMD java -jar demo-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
