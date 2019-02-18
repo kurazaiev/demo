@@ -31,7 +31,7 @@ pipeline {
         stage ('Docker build image') {
             agent any
             steps {
-                sh  'docker build -t demo-build:${BUILD_NUMBER}'
+                sh  'docker build . -t demo-build:${BUILD_NUMBER}'
                 sh  'docker tag demo-build:${BUILD_NUMBER} jenkins-demo:latest'
                 sh  'docker images'
             }
