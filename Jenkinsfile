@@ -37,13 +37,13 @@ pipeline {
                 sh 'docker images'
             }
         }
-
-          stage ('Publish build info') {
+// pull .jar to Artifactory
+/*          stage ('Publish build info') {
                  steps {
                        rtPublishBuildInfo (
                     serverId: 'art'
                 )
             }
-        }
+        }*/
     }
 }
