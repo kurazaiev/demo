@@ -23,7 +23,7 @@ pipeline {
                 rtMavenRun (
                     tool: "mvn",
                     pom: 'pom.xml',
-                    goals: 'clean install',
+                    goals: 'clean package',
                 )
             }
         }
