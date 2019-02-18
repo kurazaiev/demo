@@ -31,7 +31,7 @@ pipeline {
         stage ('Docker build image') {
             agent any
             steps {
-                sh  'echo "Hello World!"'
+                sh  'docker run hello-world'
             }
         }
 
