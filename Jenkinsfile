@@ -12,18 +12,18 @@ pipeline {
                 rtServer (
                     id: "art",
                     url: "https://demoak.jfrog.io/demoak",
-                    credentialsId: "builder-crls"
+                    credentialsId: "jfroguser"
                 )
 
                 rtMavenDeployer (
-                    id: "builder",
+                    id: "jfroguser",
                     serverId: "art",
                     releaseRepo: "libs-release-local",
                     snapshotRepo: "libs-snapshot-local"
                 )
 
                 rtMavenResolver (
-                    id: "builder",
+                    id: "jfroguser",
                     serverId: "art",
                     releaseRepo: "libs-release",
                     snapshotRepo: "libs-snapshot"
@@ -37,8 +37,8 @@ pipeline {
                     tool: "mvn",
                     pom: 'pom.xml',
                     goals: 'clean install',
-                    deployerId: "builder",
-                    resolverId: "builder"
+                    deployerId: "jfroguser",
+                    resolverId: "jfroguser"
                 )
             }
         }
