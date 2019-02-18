@@ -32,7 +32,7 @@ pipeline {
             agent any
             steps {
                 sh  'mv /var/lib/jenkins/workspace/demo-build/target/demo-0.0.1-SNAPSHOT.jar .'
-                sh  'docker build . -t demo-build:${BUILD_NUMBER}'
+                sh  'docker build -t demo-build:${BUILD_NUMBER} .'
                 sh  'docker tag demo-build:${BUILD_NUMBER} jenkins-demo:latest'
                 sh  'docker images'
             }
