@@ -31,7 +31,7 @@ pipeline {
         stage ('Docker build image') {
             agent any
             steps {
-                sh 'sudo chmod -r 755 /var/lib/jenkins/workspace/demo-build/'
+                sh 'chmod -r 755 /var/lib/jenkins/workspace/demo-build/'
                 sh 'cd /var/lib/jenkins/workspace/demo-build/'
                 sh 'mv target/demo-0.0.1-SNAPSHOT.jar ..'
                 sh 'docker image build . -t demo-build:${BUILD_NUMBER}'
