@@ -31,7 +31,7 @@ pipeline {
         stage ('Docker build image') {
             agent any
             steps {
-                sh  'docker info'
+                sh  'echo "Hello World!"'
             }
         }
 
