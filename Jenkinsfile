@@ -15,19 +15,6 @@ pipeline {
                     credentialsId: "jfroguser"
                 )
 
-                rtMavenDeployer (
-                    id: "jfroguser",
-                    serverId: "art",
-                    releaseRepo: "libs-release-local",
-                    snapshotRepo: "libs-snapshot-local"
-                )
-
-                rtMavenResolver (
-                    id: "jfroguser",
-                    serverId: "art",
-                    releaseRepo: "libs-release",
-                    snapshotRepo: "libs-snapshot"
-                )
             }
         }
 
@@ -37,8 +24,20 @@ pipeline {
                     tool: "mvn",
                     pom: 'pom.xml',
                     goals: 'clean install',
-                    deployerId: "jfroguser",
-                    resolverId: "jfroguser"
+                )
+            }
+        }
+
+        stage ('Docker build image') {
+            agent any
+            steps {
+                sh  'docker info'
+            }
+        }
+
+        stage ('Docker push to Repo') {
+            steps {
+                rtMavenRun (
                 )
             }
         }
