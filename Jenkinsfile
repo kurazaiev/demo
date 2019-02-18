@@ -38,12 +38,12 @@ pipeline {
             }
         }
 
-//           stage ('Publish build info') {
-//                    steps {
-//                        rtPublishBuildInfo (
-//                    serverId: 'art'
-//                )
-//            }
-//        }
+          stage ('Publish build info') {
+                 steps {
+                       rtPublishBuildInfo (
+                    serverId: 'art'
+                )
+            }
+        }
     }
 }
