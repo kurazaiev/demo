@@ -17,6 +17,6 @@ public class DemoApplication {
     @RequestMapping(method = RequestMethod.GET,
         path = "/")
     public String index() {
-        return "Test #2";
+        return "Test #3";
     }
 }
