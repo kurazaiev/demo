@@ -31,8 +31,9 @@ pipeline {
         stage ('Docker build image') {
             agent any
             steps {
-                sh 'cd /var/lib/jenkins/workspace/demo-build/target/'
-                sh 'docker image build .. -t demo-build:${BUILD_NUMBER}'
+                sh 'cd /var/lib/jenkins/workspace/demo-build/'
+                sh 'mv target/demo-0.0.1-SNAPSHOT.jar ..'
+                sh 'docker image build . -t demo-build:${BUILD_NUMBER}'
                 sh 'docker tag demo-build:${BUILD_NUMBER} jenkins-demo:latest'
                 sh 'docker images'
             }
