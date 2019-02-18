@@ -35,12 +35,12 @@ pipeline {
             }
         }
 
-        stage ('Docker push to Repo') {
+/*        stage ('Docker push to Repo') {
             steps {
                 rtMavenRun (
                 )
             }
-        }
+        }*/
 
         stage ('Publish build info') {
             steps {
