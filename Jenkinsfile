@@ -37,7 +37,6 @@ pipeline {
         }
 
         stage ('Push to repo') {
-            agent any
             steps {
                 sh 'docker push jenkins-demo:latest'
                 sh 'docker push demo-build:${BUILD_NUMBER}'
