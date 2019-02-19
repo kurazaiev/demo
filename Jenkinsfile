@@ -7,14 +7,13 @@ pipeline {
             }
         }
 
-        stage ('Artifactory configuration') {
+        stage ('DockerHub configuration') {
             steps {
-                rtServer (
-                    id: "art",
-                    url: "https://demoak.jfrog.io/demoak",
-                    credentialsId: "jfroguser"
+                Server (
+                    id: "dockerhub",
+                    url: "https://hub.docker.com/r/kurazaev/demo-repo",
+                    credentialsId: "dockerhub_user"
                 )
-
             }
         }
 
@@ -35,6 +34,13 @@ pipeline {
                 sh 'docker build -t demo-build:${BUILD_NUMBER} .'
                 sh 'docker tag demo-build:${BUILD_NUMBER} jenkins-demo:latest'
                 sh 'docker images'
+            }
+        }
+
+        stage ('Docker push to Repo') {
+            steps {
+                sh 'docker push jenkins-demo:latest'
+                sh 'docker push demo-build:${BUILD_NUMBER}'
             }
         }
     }
