@@ -40,7 +40,7 @@ pipeline {
         stage ('Push to repo') {
             agent any
             steps {
-                withDockerRegistry([ credentialsId: "dockerhub_user", url: "https://cloud.docker.com" ]) {
+                withDockerRegistry([ credentialsId: "dockerhub_user"]) {
                     sh 'docker push jenkins-demo:latest'
                     sh 'docker push demo-build:${BUILD_NUMBER}'
                 }
