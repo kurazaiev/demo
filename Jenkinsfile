@@ -10,7 +10,6 @@ pipeline {
         stage ('Dockerhub configuration') {
             steps {
                 withDockerRegistry (
-                    id: "dockerhub",
                     url: "https://cloud.docker.com/repository/docker/kurazaev/demo-repo",
                     credentialsId: "dockerhub_user"
                 )
