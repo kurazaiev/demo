@@ -7,14 +7,15 @@ pipeline {
             }
         }
 
-        stage ('Dockerhub configuration') {
+       /* stage ('Artifactory configuration') {
             steps {
-                withDockerRegistry (
-                    url: "https://cloud.docker.com",
-                    credentialsId: "dockerhub_user"
+                rtServer (
+                    id: "art",
+                    url: "https://demoak.jfrog.io/demoak",
+                    credentialsId: "jfroguser"
                 )
             }
-        }
+        }*/
 
         stage ('Exec Maven') {
             steps {
@@ -37,9 +38,12 @@ pipeline {
         }
 
         stage ('Push to repo') {
+            agent any
             steps {
-                sh 'docker push jenkins-demo:latest'
-                sh 'docker push demo-build:${BUILD_NUMBER}'
+                withDockerRegistry([ credentialsId: "dockerhub_user", url: "https://cloud.docker.com" ]) {
+                    sh 'docker push jenkins-demo:latest'
+                    sh 'docker push demo-build:${BUILD_NUMBER}'
+                }
             }
         }
     }
