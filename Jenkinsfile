@@ -38,10 +38,13 @@ pipeline {
             }
         }
 
-        steps {
-            withDockerRegistry([ credentialsId: "dockerhub_user", url: "https://cloud.docker.com/repository/docker/kurazaev/demo-repo" ]) {
-                sh 'docker push jenkins-demo:latest'
-                sh 'docker push demo-build:${BUILD_NUMBER}'
+        stage ('Docker build image') {
+            agent any
+            steps {
+                withDockerRegistry([ credentialsId: "dockerhub_user", url: "https://cloud.docker.com/repository/docker/kurazaev/demo-repo" ]) {
+                    sh 'docker push jenkins-demo:latest'
+                    sh 'docker push demo-build:${BUILD_NUMBER}'
+                }
             }
         }
     }
