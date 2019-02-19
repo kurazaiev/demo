@@ -32,7 +32,7 @@ pipeline {
             agent any
             steps {
                 sh 'pwd'
-                sh  'mv /var/lib/jenkins/workspace/demo-build@${BUILD_NUMBER}/target/demo-0.0.1-SNAPSHOT.jar /var/lib/docker/tmp/'
+                sh  'mv /var/lib/jenkins/workspace/demo-build/target/demo-0.0.1-SNAPSHOT.jar /var/lib/docker/tmp/'
                 sh 'pwd'
                 sh  'docker build -t demo-build:${BUILD_NUMBER} .'
                 sh 'pwd'
