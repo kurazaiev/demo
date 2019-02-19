@@ -14,7 +14,6 @@ pipeline {
                     url: "https://demoak.jfrog.io/demoak",
                     credentialsId: "jfroguser"
                 )
-
             }
         }
 
@@ -38,7 +37,7 @@ pipeline {
             }
         }
 
-        stage ('Docker build image') {
+        stage ('Push to repo') {
             agent any
             steps {
                 withDockerRegistry([ credentialsId: "dockerhub_user", url: "https://cloud.docker.com/repository/docker/kurazaev/demo-repo" ]) {
