@@ -38,12 +38,10 @@ pipeline {
             }
         }
 
-//           stage ('Publish build info') {
-//                    steps {
-//                        rtPublishBuildInfo (
-//                    serverId: 'art'
-//                )
-//            }
-//        }
-    }
+      /*  steps {
+            withDockerRegistry([ credentialsId: "6533de7e-17a4-4376-969b-e86bc1e4f903", url: "" ]) {
+                sh 'docker push kurazaev/jenkins-demo:latest'
+                sh 'docker push kurazaev/demo-build'
+            }
+    }*/
 }
