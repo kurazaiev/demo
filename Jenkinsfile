@@ -7,16 +7,6 @@ pipeline {
             }
         }
 
-       /* stage ('Artifactory configuration') {
-            steps {
-                rtServer (
-                    id: "art",
-                    url: "https://demoak.jfrog.io/demoak",
-                    credentialsId: "jfroguser"
-                )
-            }
-        }*/
-
         stage ('Exec Maven') {
             steps {
                 rtMavenRun (
@@ -37,7 +27,7 @@ pipeline {
             }
         }
 
-        stage ('Push to repo') {
+/*        stage ('Push to repo') {
             agent any
             steps {
                 withDockerRegistry([ credentialsId: "dockerhub_user",
@@ -46,6 +36,6 @@ pipeline {
                     sh 'docker push demo-build:${BUILD_NUMBER}'
                 }
             }
-        }
+        }*/
     }
 }
