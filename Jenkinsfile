@@ -32,10 +32,9 @@ pipeline {
             steps {
                 withDockerRegistry([ credentialsId: "dockerhub_user",
                                      url: "" ]) {
-                    sh 'docker tag jenkins-demo:latest kurazaev/demo-repo'
-                    sh 'docker tag demo-build:${BUILD_NUMBER} kurazaev/demo-repo'
-                    sh 'docker push jenkins-demo:latest'
-                    sh 'docker push demo-build:${BUILD_NUMBER}'
+                    sh 'docker tag jenkins-demo kurazaev/demo-repo:latest'
+                    sh 'docker tag demo-build:${BUILD_NUMBER} kurazaev/demo-repo::${BUILD_NUMBER}'
+                    sh 'docker push kurazaev/demo-repo'
                 }
             }
         }
