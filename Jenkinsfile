@@ -27,15 +27,17 @@ pipeline {
             }
         }
 
-/*        stage ('Push to repo') {
+        stage ('Push to repo') {
             agent any
             steps {
                 withDockerRegistry([ credentialsId: "dockerhub_user",
                                      url: "" ]) {
+                    sh 'docker tag jenkins-demo:latest kurazaev/demo-repo'
+                    sh 'docker tag demo-build:${BUILD_NUMBER} kurazaev/demo-repo'
                     sh 'docker push jenkins-demo:latest'
                     sh 'docker push demo-build:${BUILD_NUMBER}'
                 }
             }
-        }*/
+        }
     }
 }
