@@ -7,7 +7,7 @@ provider "google" {
 resource "google_container_node_pool" "primary_preemptible_nodes" {
   name = "k8s-cluster"
   zone = "europe-west1-d"
-  cluster = "${google_container_cluster.primary.name}"
+  cluster = "k8s-cluster"
   node_count = 3
 
   node_config {
@@ -24,6 +24,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     monitoring_service = "none"
   }
 }
+/*
 
 output "client_certificate" {
   value = "${google_container_cluster.primary.master_auth.0.client_certificate}"
@@ -36,3 +37,4 @@ output "client_key" {
 output "cluster_ca_certificate" {
   value = "${google_container_cluster.primary.master_auth.0.cluster_ca_certificate}"
 }
+*/
