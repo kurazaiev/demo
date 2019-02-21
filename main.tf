@@ -15,7 +15,6 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     image_type = "GCI"
     disk_size_gb = 20
     network = "default"
-    enable-cloud-logging = true
     autoscaling = {
       min_node_count = 3
       max_node-count = 5
@@ -23,7 +22,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     cluster-version = "1.11.6-gke.2"
     monitoring_service = "none"
   }
-}
+
 /*
 
 output "client_certificate" {
