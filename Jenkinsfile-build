@@ -7,7 +7,7 @@ pipeline {
             }
         }
 
-        stage ('Exec Maven') {
+        stage ('Build .Jar & Image') {
             steps {
                 rtMavenRun (
                     tool: "mvn",
