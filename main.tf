@@ -1,39 +1,35 @@
 provider "google" {
-  credentials = "${file("firstproject-230011-9ae6ccc7a21c.json")}"
+  credentials = "${file("./creds/firstproject-230011-9ae6ccc7a21c.json")}"
   project = "firstproject-230011"
-  region = "europe-west1-d"
+  region = "europe-west1"
 }
 
-resource "google_container_node_pool" "primary_preemptible_nodes" {
+resource "google_container_cluster" "primary" {
   name = "k8s-cluster"
   zone = "europe-west1-d"
-  cluster = "k8s-cluster"
-  node_count = 3
+  remove_default_node_pool = true
+  initial_node_count = 1
+  #logging_service = "logging.googleapis.com/kubernetes"
+}
+
+resource "google_container_node_pool" "primary_pool" {
+  name = "primary-pool"
+  cluster = "${google_container_cluster.primary.name}"
+  zone = "europe-west1-d"
+  version = "1.11.7-gke.6"
+  node_count = "2"
 
   node_config {
-    machine_type = "custom-1-1024"
+    machine_type = "n1-standard-1"
     image_type = "GCI"
     disk_size_gb = 20
-    network = "default"
-    autoscaling = {
-      min_node_count = 3
-      max_node-count = 5
-    }
-    cluster-version = "1.11.6-gke.2"
-    monitoring_service = "none"
   }
-
-/*
-
-output "client_certificate" {
-  value = "${google_container_cluster.primary.master_auth.0.client_certificate}"
+  management {
+    auto_repair = true
+    auto_upgrade = true
+  }
+  autoscaling {
+    min_node_count = 3
+    max_node_count = 5
+  }
 }
-
-output "client_key" {
-  value = "${google_container_cluster.primary.master_auth.0.client_key}"
-}
-
-output "cluster_ca_certificate" {
-  value = "${google_container_cluster.primary.master_auth.0.cluster_ca_certificate}"
-}
-*/
