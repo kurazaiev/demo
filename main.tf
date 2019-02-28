@@ -1,6 +1,5 @@
 provider "google" {
-  credentials = 35
-  f976aa-d0e3-40f8-a602-9300fc85a3d0
+  credentials = "${file(./creds/credentials.json)}"
   project = "firstproject-230011"
   region = "europe-west1"
 }
