@@ -32,8 +32,9 @@ resource "google_container_node_pool" "k8s-pool" {
   zone = "europe-west1-d"
   version = "1.11.7-gke.6"
   node_count = "2"
-  machine_type = "n1-standard-1"
+  #machine_type = "n1-standard-1"
   node_config {
+    machine_type = "n1-standard-1"
     image_type = "GCI"
     disk_size_gb = 20
   }
