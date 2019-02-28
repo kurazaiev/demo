@@ -2,11 +2,8 @@ pipeline {
     agent any
     stages {
         stage ('Create GCP cluster') {
-            agent any
             steps {
-                withCredentials([file(credentialsId: '35f976aa-d0e3-40f8-a602-9300fc85a3d0', variable: 'credentials.json')]){
                     sh 'terraform init  -input=false'
-                    sh 'pwd'
                     sh 'terraform apply -input=false -auto-approve'
                 }
             }
