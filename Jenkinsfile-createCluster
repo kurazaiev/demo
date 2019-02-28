@@ -4,8 +4,8 @@ pipeline {
         stage ('Create GCP cluster') {
             agent any
             steps {
-                sh  'terraform init  -input=false'
-                 sh 'terraform apply -input=false -auto-approve'
+                sh 'terraform init  -input=false'
+                sh 'terraform apply -input=false -auto-approve'
             }
         }
     }
