@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage ('Destroy GCP cluster') {
             steps {
-                    sh 'terraform destroy'
+                sh 'terraform init -input=false'
+                sh 'terraform destroy'
             }
         }
     }
