@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Destroy GCP cluster') {
             steps {
-                sh 'terraform destroy -auto-approve'
+                sh 'terraform destroy -target main.tf -auto-approve'
             }
         }
     }
