@@ -4,7 +4,7 @@ pipeline {
         stage ('Destroy GCP cluster') {
             steps {
                 sh 'cd /var/lib/jenkins/workspace/create-gcp-infrastructure/'
-                sh 'terraform destroy'
+                sh 'terraform destroy -auto-approve'
             }
         }
     }
