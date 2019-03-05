@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage ('Destroy GCP cluster') {
             steps {
+                sh 'cd /var/lib/jenkins/workspace/create-gcp-infrastructure/'
                 sh 'terraform plan -destroy'
             }
         }
