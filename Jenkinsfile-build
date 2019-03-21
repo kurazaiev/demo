@@ -19,7 +19,6 @@ pipeline {
                 )
                 sh 'mv /var/lib/jenkins/workspace/demo-build/target/demo-0.0.1-SNAPSHOT.jar /var/lib/jenkins/workspace/demo-build'
                 sh 'cd /var/lib/jenkins/workspace/demo-build'
-                sh 'docker build -t demo-build:${BUILD_NUMBER} .'
                 sh 'docker tag demo-build:${BUILD_NUMBER} jenkins-demo:latest'
                 sh 'docker images'
             }
@@ -30,7 +29,6 @@ pipeline {
             steps {
                 withDockerRegistry([ credentialsId: "dockerhub_user", url: "" ]) {
                     sh 'docker tag jenkins-demo kurazaev/demo-repo:latest'
-                    sh 'docker tag demo-build:${BUILD_NUMBER} kurazaev/demo-repo:${BUILD_NUMBER}'
                     sh 'docker push kurazaev/demo-repo'
                 }
             }
