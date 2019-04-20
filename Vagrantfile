@@ -1,4 +1,4 @@
-$mach_quant = 3
+$node_count = 3
 
 Vagrant.configure("2") do |config|
 	config.vm.provider "virtualbox" do |vbox|
@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
 	vbox.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
     end
 
-	(1..$mach_quant).each do |i|
+	(1..$node_count).each do |i|
 		config.vm.define "node#{i}" do |node|
 		  node.vm.network "public_network", :adapter=>2 , type: "dhcp", :bridge => "Dell Wireless 1704 802.11b/g/n (2.4GHz)"
 			#node.vm.network "public_network", ip: "192.168.1.#{24+i}"
